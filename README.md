@@ -23,6 +23,8 @@ THX to
 - Login with `pi` / `raspberry`
 - Configure RPI
   - `sudo raspi-config`
+  - Password of user `pi`
+    - `1 Change User Password`
   - Networking:
     - `2 Network Options`
     - WIFI: `N2 Wi-fi`
@@ -30,10 +32,8 @@ THX to
   - enable SSH:
     - `5 Interfacing Options`
 	- `P2 SSH`
-  - Password of user `pi`
-    - `1 Change User Password`
+  - Exit - with reboot
 - Get IP
-  - `reboot`
   - If your WIFI configuration is OK, the IP got by DHCP is printed some lines before the logon prompt.
   - If you don't see an IP on the boot screen, logon with `pi / raspberry` and type `sudo ip addr list`. The IP should be listed at the interface `wlan0`.
   - If you do not see an IP at `wlan0`, do the configuration of the WIFI again :)
@@ -42,7 +42,7 @@ THX to
   - Password: Password set before or `raspberry`
 - Install GIT
   - `sudo apt update`
-  - `sudo apt upgrade`
+  - `sudo apt upgrade -y`
   - `sudo apt install -y git`
 - Clone this repository
   - `mkdir ~/sw`

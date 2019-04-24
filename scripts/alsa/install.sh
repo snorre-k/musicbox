@@ -12,9 +12,9 @@ popd > /dev/null
 check_user_ability
 
 
-echo -e "$INFO Configuring overlay for HifiBerry DAC"
-echo    "      If you own other DACs - Skip this step"
-echo    "      Information about the HifiBerry Card can be found at https://www.hifiberry.com/build/documentation"
+echo -e "$INFO Configuring overlay for HifiBerry DAC:"
+echo    "      If you own other DACs - skip this step"
+echo    "      Information about the HifiBerry cards can be found at https://www.hifiberry.com/build/documentation"
 echo
 echo -n "Do you want to configure ALSA with HifiBerry DAC [y/N]: "
 read answer
