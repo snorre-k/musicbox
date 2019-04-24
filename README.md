@@ -43,7 +43,7 @@ THX to
 - Install GIT
   - `sudo apt update`
   - `sudo apt upgrade`
-  - `sudo apt install git`
+  - `sudo apt install -y git`
 - Clone this repository
   - `mkdir ~/sw`
   - `cd ~/sw`
