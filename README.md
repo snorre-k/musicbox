@@ -54,6 +54,17 @@ THX to
   - `sudo reboot`
   - You should hear a starting sound after the boot has finished
 
+## What can I do after installation?
+
+- Use your box as Spotify device
+- Connect to your box with Bluetooth and play music
+- Use your box as Plex Audio Player
+- Go to http://ip-of-your-device and use __iris__ or __moped__ as webclients to play
+  - Local Media
+  - Spotify
+  - TuneIn - web radio
+  - local or remore radio streams
+
 ## Single components installation
 
 Single components can be installed by changing to the relevant subdirectory and starting `./install.sh`
