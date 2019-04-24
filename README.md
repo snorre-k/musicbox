@@ -56,7 +56,7 @@ THX to
 
 Single components can be installed by changing to the relevant subdirectory and starting `sudo ./install.sh`
 
-## Additional PI config`
+## Additional PI config
 
 - NTP - use DHCP supplied DHCP servers: `sudo ./scripts/ntp_dhcp.sh`
 - VIM installation including some configuration: `sudo ./scripts/vim.sh`

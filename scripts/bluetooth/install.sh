@@ -32,7 +32,7 @@ if [ "$answer" = "y" ]; then
   echo -e "$INFO Copying scripts"
   cp bluetooth-agent bluetooth-udev /usr/local/sbin/
 
-  echo -e "$INFO  Copying services"
+  echo -e "$INFO Copying services"
   cp bluetooth-agent.service bluealsa-aplay.service startup-sound.service /etc/systemd/system/
 
   echo -e "$INFO Enabling services"

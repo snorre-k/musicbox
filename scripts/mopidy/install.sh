@@ -38,6 +38,33 @@ enabled = true
 hostname = 0.0.0.0
 port = 6680
 
+EOF
+  echo -e "$INFO Configuring Spotify in Mopidy"
+  echo -e "      Please open a browser and authenticate with Spoitify at https://www.mopidy.com/authenticate/#spotify"
+  echo
+  echo    "      Please enter the output below:"
+  echo -n "      client_id: "
+  read spot_client_id
+  echo -n "      client_secret: "
+  read spot_client_secret
+  echo
+  echo    "      Please enter yout spotify credentials below:"
+  echo -n "      Username: "
+  read spot_username
+  echo -n "      Password: "
+  read spot_password
+  if [ "$spot_client_id" -a "$spot_client_secret" -a "$spot_username" -a "$spot_password" ]; then
+    cat << EOF >> /etc/mopidy/mopidy.conf
+[spotify]
+username = $spot_username
+password = $spot_password
+client_id = $spot_client_id
+client_secret = $spot_client_secret
+bitrate = 320
+volume_normalization = false
+EOF
+  else
+    cat << EOF >> /etc/mopidy/mopidy.conf
 [spotify]
 username = alice
 password = secret
@@ -46,10 +73,10 @@ client_secret = ... client_secret value you got from mopidy.com ...
 bitrate = 320
 volume_normalization = false
 EOF
-  echo -e "$WARNING Please edit /etc/mopidy/mopidy.conf and configure the [spotify] section"
-  echo    "         Get your credentials at https://www.mopidy.com/authenticate/#spotify"
-  echo "Press resturn to continue ..."
-  read xxx
+    echo -e "$WARNING One or more of the entered values were empty."
+    echo    "         Puting a dummy Spotify configuration into /etc/mopidy/mopidy.conf"
+    echo    "         Please edit this manually"
+  fi
 
   echo -e "$INFO Enabling and starting Mopidy"
   systemctl enable mopidy

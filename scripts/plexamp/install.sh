@@ -36,7 +36,7 @@ if [ "$answer" = "y" ]; then
   wget -q https://nodejs.org/dist/$VERSION/node-$VERSION-$DISTRO.tar.gz
 
   if [ $? -eq 0 ]; then
-    if [ -f $VERSION/node-$VERSION-$DISTRO.tar.gz ]; then
+    if [ -f node-$VERSION-$DISTRO.tar.gz ]; then
       echo -e "$INFO Extracting and linking NODEJS $VERSION for $DISTRO"
       mkdir -p /usr/local/lib/nodejs
       tar -xf node-$VERSION-$DISTRO.tar.gz -C /usr/local/lib/nodejs
