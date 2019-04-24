@@ -21,6 +21,7 @@ read usertoken
 
 if [ "$playername" -a "$playerid" -a "$userid" -a "$usertoken" ]; then
   echo -e "$INFO Configuring Plexamp"
+  sudo mkdir -p `basename $CFG`
   sudo cp server.json $CFG
   sudo chown pi:pi $CFG
   sudo chmod 600 $CFG
