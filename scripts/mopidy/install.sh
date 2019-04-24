@@ -48,6 +48,8 @@ volume_normalization = false
 EOF
   echo -e "$WARNING Please edit /etc/mopidy/mopidy.conf and configure the [spotify] section"
   echo    "         Get your credentials at https://www.mopidy.com/authenticate/#spotify"
+  echo "Press resturn to continue ..."
+  read xxx
 
   echo -e "$INFO Enabling and starting Mopidy"
   systemctl enable mopidy
