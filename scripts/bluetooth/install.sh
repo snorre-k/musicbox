@@ -20,7 +20,7 @@ answer=`echo "$answer" | tr '[:upper:]' '[:lower:]'`
 
 if [ "$answer" = "y" ]; then
   echo -e "$INFO Installing software"
-  apt install alsa-base alsa-utils bluealsa bluez python-gobject python-dbus vorbis-tools sound-theme-freedesktop
+  apt install -y alsa-base alsa-utils bluealsa bluez python-gobject python-dbus vorbis-tools sound-theme-freedesktop
 
   echo -e "$INFO Configuring Bluetooth (appear as audio device)"
   cp main.conf /etc/bluetooth/main.conf 

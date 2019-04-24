@@ -20,26 +20,30 @@ THX to
 - Install [Raspbian Stretch Lite](https://www.raspberrypi.org/downloads/raspbian/) on a SD card
 - Insert SD card into your PI (Zero), connect HDMI and a keyboard
 - Power up PI (Zero)
-- Login with pi / raspberry
+- Login with `pi` / `raspberry`
 - Configure RPI
   - `sudo raspi-config`
-  - `2 Network Options`
-  - WIFI: `N2 Wi-fi`
-  - Optional Hostname: `N1 Hostname`
-- Important: change the password of the user `pi`
-  - `passwd`
+  - Networking:
+    - `2 Network Options`
+    - WIFI: `N2 Wi-fi`
+    - Optional Hostname: `N1 Hostname`
+  - enable SSH:
+    - `5 Interfacing Options`
+	- `P2 SSH`
+  - Password of user `pi`
+    - `1 Change User Password`
 - Get IP
-  - `sudo reboot`
+  - `reboot`
   - If your WIFI configuration is OK, the IP got by DHCP is printed some lines before the logon prompt.
   - If you don't see an IP on the boot screen, logon with `pi / raspberry` and type `sudo ip addr list`. The IP should be listed at the interface `wlan0`.
   - If you do not see an IP at `wlan0`, do the configuration of the WIFI again :)
-- SSH to your PI (from Windows - Putty, or from Linux - ssh). Example below shows a Linux SSH connection. Insert your IP instead of 10.10.10.10
+- SSH to your PI (from Windows - Putty, or from Linux - ssh). Example below shows a Linux SSH connection. Insert your IP instead of `10.10.10.10`
   - `ssh pi@10.10.10.10`
-  - Password: `raspberry`
+  - Password: Password set before or `raspberry`
 - Install GIT
   - `sudo apt update`
   - `sudo apt upgrade`
-  - `sudo install git`
+  - `sudo apt install git`
 - Clone this repository
   - `mkdir ~/sw`
   - `cd ~/sw`

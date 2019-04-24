@@ -24,8 +24,8 @@ if [ "$answer" = "y" ]; then
   wget -q -O /etc/apt/sources.list.d/mopidy.list https://apt.mopidy.com/stretch.list
 
   echo -e "$INFO Installing Mopidy and Plugins" 
-  apt-get update
-  apt-get install mopidy mopidy-tunein mopidy-spotify python-pip gstreamer1.0-plugins-bad gstreamer1.0-libav
+  apt update
+  apt install -y mopidy mopidy-tunein mopidy-spotify python-pip gstreamer1.0-plugins-bad gstreamer1.0-libav
 
   echo -e "$INFO Installing Web GUI with pip"
   pip install Mopidy-Moped Mopidy-Iris
