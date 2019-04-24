@@ -48,7 +48,7 @@ THX to
   - `mkdir ~/sw`
   - `cd ~/sw`
   - `git clone https://github.com/snorre-k/musicbox.git`
-- Start the Installation
+- Start the installation
   - `./musicbox/scripts/start_install.sh`
 - Reboot to get DAC overlay started
   - `sudo reboot`
