@@ -32,6 +32,6 @@ set_servers() {
 if $if_up; then
     if [ "$new_ntp_servers" ]; then
         set_servers
-	fi
-fi 
+    fi
+fi
 EOF

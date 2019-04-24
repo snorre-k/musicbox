@@ -20,7 +20,7 @@ if [ "$answer" = "y" ]; then
   sudo apt install -y alsa-base alsa-utils bluealsa bluez python-gobject python-dbus vorbis-tools sound-theme-freedesktop
 
   echo -e "$INFO Configuring Bluetooth (appear as audio device)"
-  sudo cp main.conf /etc/bluetooth/main.conf 
+  sudo cp main.conf /etc/bluetooth/main.conf
 
   echo -e "$INFO Settings for BT Controller"
   sudo hciconfig hci0 piscan
@@ -34,9 +34,9 @@ if [ "$answer" = "y" ]; then
 
   echo -e "$INFO Enabling services"
   sudo systemctl daemon-reload
-  sudo systemctl enable bluetooth-agent.service 
+  sudo systemctl enable bluetooth-agent.service
   sudo systemctl enable bluealsa-aplay
-  sudo systemctl enable startup-sound 
+  sudo systemctl enable startup-sound
 
   echo -e "$INFO Changing bluealsa.service"
   sudo mkdir -p /etc/systemd/system/bluealsa.service.d

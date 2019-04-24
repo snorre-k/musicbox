@@ -26,45 +26,66 @@ if [ "$answer" = "y" ]; then
   if [ $? -eq 0 ]; then
     if [ -f $DLFILE ]; then
       echo -e "$INFO Extracting spotifyd to /usr/local/sbin"
-	  unzip $DLFILE
-	  if [ -x spotifyd ]; then
-	    sudo cp spotifyd /usr/local/sbin
-		rm spotifyd
-		popd > /dev/null
+      unzip $DLFILE
+      if [ -x spotifyd ]; then
+        sudo cp spotifyd /usr/local/sbin
+        rm spotifyd
+        popd > /dev/null
 
-		echo -e "$INFO Installing Spotifyd service"
-		sudo cp spotifyd.service /etc/systemd/system/
-		sudo systemctl daemon-reload
-		sudo systemctl enable spotifyd.service
-		
-		echo -e "$INFO Configuring Spotifyd"
-		sudo cp spotifyd.conf /etc/
-		sudo chmod 600 /etc/spotifyd.conf
-		echo -n "      Spotify Username: "
-		read username
-		echo -n "      Spotify Password: "
-		read password
-		if [ "$username" -a "$password" ]; then
-		  sudo sed -i "s/^username =/username = $username/" /etc/spotifyd.conf
-		  sudo sed -i "s/^password =/password = $password/" /etc/spotifyd.conf
+        echo -e "$INFO Installing Spotifyd service"
+        sudo cp spotifyd.service /etc/systemd/system/
+        sudo systemctl daemon-reload
+        sudo systemctl enable spotifyd.service
 
-		  echo -e "$INFO Starting Spotifyd"
-		  sudo systemctl start spotifyd.service
-		else
-		  echo -e "$WARNING: Empty username or password given."
-		  echo    "          Please configure manually in /etc/spotifyd.conf"
-		fi
+        echo -e "$INFO Configuring Spotifyd"
+        sudo cp spotifyd.conf /etc/
+        sudo chmod 600 /etc/spotifyd.conf
+
+        # Read Spotify Config from mopidy
+        if [ -f /etc/mopidy/mopidy.conf ]; then
+          SPOT_CFG=`sudo sed '/^\[spotify\]/,/^\[.*\]/!d;//d' /etc/mopidy/mopidy.conf`
+          username=`echo "$SPOT_CFG" | grep username | awk -F= '{print $2}' | tr -d ' '`
+          password=`echo "$SPOT_CFG" | grep password | awk -F= '{print $2}' | tr -d ' '`
+        fi
+
+        # Check for dummy username / password
+        if echo "$username" | grep -q "alice"; then
+          if echo "$password" | grep -q "secret"; then
+            usernamne=""
+            password=""
+          fi
+        fi
+
+        # If no exiting config for spotify - ask user
+        if ! [ "$username" -a "$password" ]; then
+          echo -n "      Spotify Username: "
+          read username
+          echo -n "      Spotify Password: "
+          read password
+        fi
+
+        # Check if we can write the config
+        if [ "$username" -a "$password" ]; then
+          sudo sed -i "s/^username =/username = $username/" /etc/spotifyd.conf
+          sudo sed -i "s/^password =/password = $password/" /etc/spotifyd.conf
+
+          echo -e "$INFO Starting Spotifyd"
+          sudo systemctl start spotifyd.service
+        else
+          echo -e "$WARNING: Empty username or password given."
+          echo    "          Please configure manually in /etc/spotifyd.conf"
+        fi
       else
         echo -e "$ERROR spotifyd could not be extracted"
-		popd > /dev/null
+        popd > /dev/null
       fi
-	else
-	  echo -e "$ERROR $DLFILE not found"
-	  popd > /dev/null
+    else
+      echo -e "$ERROR $DLFILE not found"
+      popd > /dev/null
     fi
   else
     echo -e "$ERROR Unable to download $DLHOST/$DLFILE"
-	popd > /dev/null
+    popd > /dev/null
   fi
 fi
 echo

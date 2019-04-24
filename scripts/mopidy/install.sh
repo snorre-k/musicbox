@@ -21,7 +21,7 @@ if [ "$answer" = "y" ]; then
   wget -q -O - https://apt.mopidy.com/mopidy.gpg | sudo apt-key add -
   sudo wget -q -O /etc/apt/sources.list.d/mopidy.list https://apt.mopidy.com/stretch.list
 
-  echo -e "$INFO Installing Mopidy and Plugins" 
+  echo -e "$INFO Installing Mopidy and Plugins"
   sudo apt update
   sudo apt install -y mopidy mopidy-tunein mopidy-spotify python-pip gstreamer1.0-plugins-bad gstreamer1.0-libav
 
@@ -52,7 +52,7 @@ EOF
   echo -n "      Password: "
   read spot_password
   if [ "$spot_client_id" -a "$spot_client_secret" -a "$spot_username" -a "$spot_password" ]; then
-    cat << EOF | sudo tee /etc/mopidy/mopidy.conf > /dev/null
+    cat << EOF | sudo tee -a /etc/mopidy/mopidy.conf > /dev/null
 [spotify]
 username = $spot_username
 password = $spot_password
@@ -62,7 +62,7 @@ bitrate = 320
 volume_normalization = false
 EOF
   else
-    cat << EOF | sudo tee /etc/mopidy/mopidy.conf > /dev/null
+    cat << EOF | sudo tee -a /etc/mopidy/mopidy.conf > /dev/null
 [spotify]
 username = alice
 password = secret
@@ -79,7 +79,7 @@ EOF
   echo -e "$INFO Enabling and starting Mopidy"
   sudo systemctl enable mopidy
   sudo systemctl start mopidy
-  
+
   echo -e "$INFO Routing port 80 to 6680"
   sudo sed -i '/^exit0$/i iptables -t nat -I PREROUTING -p tcp --dport 80 -j REDIRECT --to-ports 6680\n' /etc/rc.local
 fi

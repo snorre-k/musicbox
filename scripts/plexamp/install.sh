@@ -25,7 +25,7 @@ answer=`echo "$answer" | tr '[:upper:]' '[:lower:]'`
 
 if [ "$answer" = "y" ]; then
   VERSION=v9.11.2
-  DISTRO=linux-armv6l 
+  DISTRO=linux-armv6l
 
   echo -e "$INFO Downloading NODEJS $VERSION for $DISTRO"
   mkdir -p ~/sw
@@ -46,9 +46,9 @@ EOF
       sudo ln -s /usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin/node /usr/bin/node
       sudo ln -s /usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin/npm /usr/bin/npm
       sudo ln -s /usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin/npx /usr/bin/npx
-	else
-	  echo -e "$ERROR File $VERSION/node-$VERSION-$DISTRO.tar.gz not found"
-	fi
+    else
+      echo -e "$ERROR File $VERSION/node-$VERSION-$DISTRO.tar.gz not found"
+    fi
   else
     echo -e "$ERROR Unable to download https://nodejs.org/dist/$VERSION/node-$VERSION-$DISTRO.tar.gz"
   fi
@@ -71,29 +71,29 @@ if [ "$answer" = "y" ]; then
 
   if [ $? -eq 0 ]; then
     if [ -f $DLFILE ]; then
-	  echo -e "$INFO Extracting $DLFILE in /home/pi"
-	  sudo tar -xf $DLFILE -C /home/pi
-	  popd
-	  echo -e "$INFO Installing Plexamp service"
-	  sudo cp /home/pi/plexamp/plexamp.service /etc/systemd/system/
-	  sudo systemctl daemon-reload
-	  sudo systemctl enable plexamp.service
+      echo -e "$INFO Extracting $DLFILE in /home/pi"
+      sudo tar -xf $DLFILE -C /home/pi
+      popd
+      echo -e "$INFO Installing Plexamp service"
+      sudo cp /home/pi/plexamp/plexamp.service /etc/systemd/system/
+      sudo systemctl daemon-reload
+      sudo systemctl enable plexamp.service
 
-	  echo -e "$WARNING You have to configure Plexamp!"
-	  echo    "         - Download a desktop version from https://plexamp.com/"
-	  echo    "         - Install it on your desktop"
-	  echo    "         - Start it and sign in to your Plex account:"
-	  echo    "           + Use the hostname of your PI musicbox as PLAYER NAME"
-	  echo    "         - Get the \"server.json\" file:"
-	  echo    "           + Windows: type %LOCALAPPDATA%\\Plexamp\\Plexamp\\server.json"
-	  echo    "           + Linux: cat ~/.config/Plexamp/server.json"
-	  echo    "           + macOS: Sorry, I do not own a MAC - please find it yourself"
-	  echo    "         - Copy the content of \"server.json\" to your PI to:"
-	  echo    "           + /home/pi/.config/Plexamp/server.json"
-	  echo    "         - Sign out and back into your existing desktop install to get a new identifier/token"
-	  echo    "         - After configuration you can reboot to start Plexamp"
-	  echo -e "$INFO If you know the content of the server.json file, I can configure plexamp for you"
-	  echo -n "Shall I configure Plexamp [y/N]: "
+      echo -e "$WARNING You have to configure Plexamp!"
+      echo    "         - Download a desktop version from https://plexamp.com/"
+      echo    "         - Install it on your desktop"
+      echo    "         - Start it and sign in to your Plex account:"
+      echo    "           + Use the hostname of your PI musicbox as PLAYER NAME"
+      echo    "         - Get the \"server.json\" file:"
+      echo    "           + Windows: type %LOCALAPPDATA%\\Plexamp\\Plexamp\\server.json"
+      echo    "           + Linux: cat ~/.config/Plexamp/server.json"
+      echo    "           + macOS: Sorry, I do not own a MAC - please find it yourself"
+      echo    "         - Copy the content of \"server.json\" to your PI to:"
+      echo    "           + /home/pi/.config/Plexamp/server.json"
+      echo    "         - Sign out and back into your existing desktop install to get a new identifier/token"
+      echo    "         - After configuration you can reboot to start Plexamp"
+      echo -e "$INFO If you know the content of the server.json file, I can configure plexamp for you"
+      echo -n "Shall I configure Plexamp [y/N]: "
       read answer
       answer=`echo "$answer" | tr '[:upper:]' '[:lower:]'`
       if [ "$answer" = "y" ]; then
@@ -101,17 +101,17 @@ if [ "$answer" = "y" ]; then
       else
         echo -e "$INFO You can call the configuration script manually later:"
         echo    "      `pwd`/config_plexamp.sh"
-		echo
-		echo "Press return to continue ..."
-		read xxx
-	  fi
-	else
-	  echo -e "$ERROR $DLFILE not found"
-	  popd > /dev/null
-	fi
+        echo
+        echo "Press return to continue ..."
+        read xxx
+      fi
+    else
+      echo -e "$ERROR $DLFILE not found"
+      popd > /dev/null
+    fi
   else
     echo -e "$ERROR Unable to download $DLHOST/$DLFILE"
-	popd > /dev/null
+    popd > /dev/null
   fi
 fi
 echo
