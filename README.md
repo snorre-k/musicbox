@@ -53,7 +53,7 @@ THX to
 
 ## Single components installation
 
-Single components can be installed by changing to the relevant subdirectory and starting `sudo ./install.sh`
+Single components can be installed by changing to the relevant subdirectory and starting `./install.sh`
 
 ## Additional PI config
 
