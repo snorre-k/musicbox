@@ -31,7 +31,7 @@ THX to
 - Get IP
   - `sudo reboot`
   - If your WIFI configuration is OK, the IP got by DHCP is printed some lines before the logon prompt.
-  - If you don't so an IP on the boot screen, logon with `pi / raspberry` and type `sudo ip addr list`. The IP should be listed at the interface `wlan0`.
+  - If you don't see an IP on the boot screen, logon with `pi / raspberry` and type `sudo ip addr list`. The IP should be listed at the interface `wlan0`.
   - If you do not see an IP at `wlan0`, do the configuration of the WIFI again :)
 - SSH to your PI (from Windows - Putty, or from Linux - ssh). Example below shows a Linux SSH connection. Insert your IP instead of 10.10.10.10
   - `ssh pi@10.10.10.10`
@@ -41,22 +41,21 @@ THX to
   - `sudo apt upgrade`
   - `sudo install git`
 - Clone this repository
-  - `sudo su -`
   - `mkdir ~/sw`
   - `cd ~/sw`
   - `git clone https://github.com/snorre-k/musicbox.git`
 - Start the Installation
   - `cd musicbox/scripts`
-  - `./start_install.sh`
+  - `sudo ./start_install.sh`
 
 ## Single components installation
 
-Single components can be installed by changing to the relevant subdirectory and starting `./install.sh`
+Single components can be installed by changing to the relevant subdirectory and starting `sudo ./install.sh`
 
 ## Additional PI config`
 
-- NTP - use DHCP supplied DHCP servers: `./scripts/ntp_dhcp.sh`
-- VIM installation including some configuration: `./scripts/vim.sh`
+- NTP - use DHCP supplied DHCP servers: `sudo ./scripts/ntp_dhcp.sh`
+- VIM installation including some configuration: `sudo ./scripts/vim.sh`
 
 ## Warning
 
