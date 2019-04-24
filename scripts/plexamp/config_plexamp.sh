@@ -1,6 +1,7 @@
 #!/bin/bash
 
 CFG=/home/pi/.config/Plexamp/server.json
+CFG_DIR=/home/pi/.config
 
 # Import Helpers
 DIR=`dirname $0`
@@ -21,9 +22,11 @@ read usertoken
 
 if [ "$playername" -a "$playerid" -a "$userid" -a "$usertoken" ]; then
   echo -e "$INFO Configuring Plexamp"
+  # stop possibly running plexamp
+  sudo systemctl stop plexamp
   sudo mkdir -p `dirname $CFG`
   sudo cp server.json $CFG
-  sudo chown pi:pi $CFG
+  sudo chown -R pi:pi $CFG_DIR
   sudo chmod 600 $CFG
   sudo sed -i "s/playername/$playername/" $CFG
   sudo sed -i "s/playerid/$playerid/" $CFG
