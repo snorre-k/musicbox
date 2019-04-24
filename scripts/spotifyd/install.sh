@@ -16,7 +16,7 @@ read answer
 answer=`echo "$answer" | tr '[:upper:]' '[:lower:]'`
 
 if [ "$answer" = "y" ]; then
-  DLFILE=spotifyd-2019-02-25-amd64.zip
+  DLFILE=spotifyd-2019-02-25-armv6.zip
   DLHOST=https://github.com/Spotifyd/spotifyd/releases/download/v0.2.5
 
   echo -e "$INFO Downloading Spotifyd"
