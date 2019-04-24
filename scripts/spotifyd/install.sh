@@ -66,8 +66,10 @@ if [ "$answer" = "y" ]; then
 
         # Check if we can write the config
         if [ "$username" -a "$password" ]; then
+          devicename=`hostname`
           sudo sed -i "s/^username =/username = $username/" /etc/spotifyd.conf
           sudo sed -i "s/^password =/password = $password/" /etc/spotifyd.conf
+	  sudo sed -i "s/^device_name =/device_name = $devicename/" /etc/spotifyd.conf
 
           echo -e "$INFO Starting Spotifyd"
           sudo systemctl start spotifyd.service
