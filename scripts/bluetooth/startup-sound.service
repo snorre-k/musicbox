@@ -1,0 +1,10 @@
+[Unit]
+Description=Startup sound
+After=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/ogg123 -q /usr/share/sounds/freedesktop/stereo/service-login.oga
+
+[Install]
+WantedBy=multi-user.target

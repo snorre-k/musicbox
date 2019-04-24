@@ -1,0 +1,26 @@
+#!/bin/bash
+
+#name=$(/bin/sed 's/\"//g' <<< $NAME)
+name=`echo $NAME | tr -d \"`
+device=`echo -e 'devices\nexit\n' | bluetoothctl | grep "^Device $name" | sed 's/Device //' | sed "s/$name//"`
+
+if [[ ! $name =~ ^([0-9A-F]{2}[:-]){5}([0-9A-F]{2})$ ]]; then logger exited; exit 0; fi
+
+
+action=$(expr "$ACTION" : "\([a-zA-Z]\+\).*")
+
+if [ "$action" = "add" ]; then
+    logger "BT Client $name - \"$device\" connected"
+    echo -e 'discoverable off\nexit\n' | bluetoothctl
+    ogg123 -q /usr/share/sounds/freedesktop/stereo/device-added.oga
+    # disconnect wifi to prevent dropouts
+    # ifconfig wlan0 down &
+fi
+
+if [ "$action" = "remove" ]; then
+    logger "BT Client $name - \"$device\" removed"
+    ogg123 -q /usr/share/sounds/freedesktop/stereo/device-removed.oga
+    # reenable wifi
+    # ifconfig wlan0 up &
+    echo -e "discoverable on\nexit\n" | bluetoothctl
+fi

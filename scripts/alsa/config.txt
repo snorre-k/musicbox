@@ -1,0 +1,6 @@
+# Enable audio (loads snd_bcm2835)
+#dtparam=audio=on
+
+# HifiBerry
+dtoverlay=hifiberry-dac
+dtoverlay=i2s-mmap

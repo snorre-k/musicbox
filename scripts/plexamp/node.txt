@@ -1,0 +1,34 @@
+How to install Node.js via binary archive on Linux?
+
+1.) Unzip the binary archive to any directory you wanna install Node, I use /usr/local/lib/nodejs
+
+ VERSION=v9.11.2
+ DISTRO=linux-armv6l
+ mkdir -p /usr/local/lib/nodejs
+ tar -xvf node-$VERSION-$DISTRO.tar.xz -C /usr/local/lib/nodejs 
+
+2.) Set the environment variable /etc/profile.d/nodejs.sh
+
+# Nodejs
+VERSION=v9.11.2
+DISTRO=linux-armv6l
+export PATH=/usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin:$PATH
+
+Refresh profile
+
+
+3.) Test installation using
+
+$ node -v
+
+$ npm version
+
+$ npx -v
+
+
+4.) Create a links:
+
+ln -s /usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin/node /usr/bin/node
+ln -s /usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin/npm /usr/bin/npm
+ln -s /usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin/npx /usr/bin/npx
+

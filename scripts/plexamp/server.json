@@ -1,0 +1,13 @@
+{
+  "player": {
+    "name": "playername",
+    "identifier": "playerid"
+  },
+  "user": {
+    "id": userid,
+    "token": "usertoken"
+  },
+ "logging": {
+    "level": "warn"
+  }
+ }
