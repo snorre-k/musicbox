@@ -1,23 +1,23 @@
 # musicbox
 
-Some scripts to create a RPI musicbox with a [HifiBerry DAC][https://www.hifiberry.com/] on [PI Zero][https://www.raspberrypi.org/products/raspberry-pi-zero/] with Raspbian Stretch
+Some scripts to create a RPI musicbox with a [HifiBerry DAC](https://www.hifiberry.com/) on [PI Zero](https://www.raspberrypi.org/products/raspberry-pi-zero/) with Raspbian Stretch
 
 ## Included software
 
-- Spotify Connect Server: [spotifyd][https://github.com/Spotifyd/spotifyd]
-- Plex Audio Player: [plexamp][https://plexamp.com/]
-- MPD with TuneIn and Spotify Integration: [mopidy][https://www.mopidy.com/]
-- Bluetooth Audio: [bluealsa][https://github.com/Arkq/bluez-alsa]
+- Spotify Connect Server: [spotifyd](https://github.com/Spotifyd/spotifyd)
+- Plex Audio Player: [plexamp](https://plexamp.com/)
+- MPD with TuneIn and Spotify Integration: [mopidy](https://www.mopidy.com/)
+- Bluetooth Audio: [bluealsa](https://github.com/Arkq/bluez-alsa)
 
 ## Inspired by
 
 THX to
-- @nicokaiser for his scripts in [nicokaiser/rpi-audio-receiver][https://github.com/nicokaiser/rpi-audio-receiver] (Bluetooth and Spotifyd)
-- @woutervanwijk and contributors for the [Pi MusicBox][https://www.pimusicbox.com] [project][https://github.com/pimusicbox/pimusicbox]
+- @nicokaiser for his scripts in [nicokaiser/rpi-audio-receiver](https://github.com/nicokaiser/rpi-audio-receiver) (Bluetooth and Spotifyd)
+- @woutervanwijk and contributors for the [Pi MusicBox](https://www.pimusicbox.com) [project](https://github.com/pimusicbox/pimusicbox)
 
 ## Setup
 
-- Install [Raspbian Stretch Lite][https://www.raspberrypi.org/downloads/raspbian/] on a SD card
+- Install [Raspbian Stretch Lite](https://www.raspberrypi.org/downloads/raspbian/) on a SD card
 - Insert SD card into your PI (Zero), connect HDMI and a keyboard
 - Power up PI (Zero)
 - Login with pi / raspberry
