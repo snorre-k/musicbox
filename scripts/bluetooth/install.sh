@@ -10,6 +10,8 @@ pushd $DIR > /dev/null
 # Check User
 check_user_ability
 
+echo -e "$ERROR BT is buggy - has to be investigated"
+exit
 echo -e "$INFO Installing Bluetooth Audio"
 echo -n "Do you want to continue [y/N]: "
 read answer
