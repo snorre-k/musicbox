@@ -54,3 +54,4 @@ EOF
   echo -e "$INFO Install udev rule - BT device connect/disconnect"
   cp 99-bluetooth-udev.rules /etc/udev/rules.d
 fi
+echo
