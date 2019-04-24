@@ -8,7 +8,10 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 # Import Color Definition
+DIR=`dirname $0`
+pushd $DIR > /dev/null
 . ./colors.sh
+popd > /dev/null
 
 # Install VIM
 echo -e "$INFO Installing VIM"

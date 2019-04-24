@@ -8,7 +8,10 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 # Import Color Definition
+DIR=`dirname $0`
+pushd $DIR > /dev/null
 . ./colors.sh
+popd > /dev/null
 
 echo -e "$INFO Settings for using the DHCP supplied NTP servers"
 cat << EOF  > /lib/dhcpcd/dhcpcd-hooks/50-timesyncd.conf
