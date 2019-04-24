@@ -73,7 +73,7 @@ if [ "$answer" = "y" ]; then
     if [ -f $DLFILE ]; then
       echo -e "$INFO Extracting $DLFILE in /home/pi"
       sudo tar -xf $DLFILE -C /home/pi
-      popd
+      popd > /dev/null
       echo -e "$INFO Installing Plexamp service"
       sudo cp /home/pi/plexamp/plexamp.service /etc/systemd/system/
       sudo systemctl daemon-reload
@@ -85,8 +85,8 @@ if [ "$answer" = "y" ]; then
       echo    "         - Start it and sign in to your Plex account:"
       echo    "           + Use the hostname of your PI musicbox as PLAYER NAME"
       echo    "         - Get the \"server.json\" file:"
-      echo    "           + Windows: type %LOCALAPPDATA%\\Plexamp\\Plexamp\\server.json"
-      echo    "           + Linux: cat ~/.config/Plexamp/server.json"
+      echo    "           + Windows: \"type %LOCALAPPDATA%\\Plexamp\\Plexamp\\server.json\""
+      echo    "           + Linux: \"cat ~/.config/Plexamp/server.json\""
       echo    "           + macOS: Sorry, I do not own a MAC - please find it yourself"
       echo    "         - Copy the content of \"server.json\" to your PI to:"
       echo    "           + /home/pi/.config/Plexamp/server.json"
