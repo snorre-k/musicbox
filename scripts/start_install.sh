@@ -6,12 +6,11 @@
 DIR=`dirname $0`
 pushd $DIR > /dev/null
 . ./various/helpers.sh
-popd > /dev/null
 
 # Check User
 check_user_ability
 
-echo -e "$INFO Starting the main installation containing"
+echo -e "$INFO Starting the main installation containing:"
 echo    "      ALSA configuration for HifiBerry DAC"
 echo    "      Bluetooth setup for \"bluealsa\""
 echo    "      Mopidy Setup"
@@ -47,3 +46,6 @@ pushd ./spotifyd > /dev/null
 popd > /dev/null
 
 echo -e "$INFO FINISHED"
+
+popd > /dev/null
+
