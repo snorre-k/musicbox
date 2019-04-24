@@ -50,6 +50,9 @@ THX to
   - `git clone https://github.com/snorre-k/musicbox.git`
 - Start the Installation
   - `./musicbox/scripts/start_install.sh`
+- Reboot to get DAC overlay started
+  - `sudo reboot`
+  - You should hear a starting sound after the boot has finished
 
 ## Single components installation
 
