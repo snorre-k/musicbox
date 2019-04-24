@@ -2,16 +2,14 @@
 
 ## Main Installation script
 
-if [[ $EUID -ne 0 ]]; then
-   echo "This script must be run as root" 
-   exit 1
-fi
-
-# Import Color Definition
+# Import Helpers
 DIR=`dirname $0`
 pushd $DIR > /dev/null
-. ./colors.sh
+. ./various/helpers.sh
 popd > /dev/null
+
+# Check User
+check_user_ability
 
 echo -e "$INFO Starting the main installation containing"
 echo    "      ALSA configuration for HifiBerry DAC"

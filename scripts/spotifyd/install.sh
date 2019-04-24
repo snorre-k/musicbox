@@ -2,16 +2,13 @@
 
 ## Install Spotifyd
 
-if [[ $EUID -ne 0 ]]; then
-   echo "This script must be run as root" 
-   exit 1
-fi
-
-# Import Color Definition
+# Import Helpers
 DIR=`dirname $0`
 pushd $DIR > /dev/null
-. ../colors.sh
-popd > /dev/null
+. ../various/helpers.sh
+
+# Check User
+check_user_ability
 
 echo -e "$INFO Installing and Configuring Spotifyd"
 echo -n "Do you want to continue [y/N]: "
@@ -31,27 +28,28 @@ if [ "$answer" = "y" ]; then
       echo -e "$INFO Extracting spotifyd to /usr/local/sbin"
 	  unzip $DLFILE
 	  if [ -x spotifyd ]; then
-	    mv spotifyd /usr/local/sbin
+	    sudo cp spotifyd /usr/local/sbin
+		rm spotifyd
+		popd > /dev/null
 
 		echo -e "$INFO Installing Spotifyd service"
-		popd > /dev/null
-		cp spotifyd.service /etc/systemd/system/
-		systemctl daemon-reload
-		systemctl enable spotifyd.service
+		sudo cp spotifyd.service /etc/systemd/system/
+		sudo systemctl daemon-reload
+		sudo systemctl enable spotifyd.service
 		
 		echo -e "$INFO Configuring Spotifyd"
-		cp spotifyd.conf /etc/
-		chmod 600 /etc/spotifyd.conf
+		sudo cp spotifyd.conf /etc/
+		sudo chmod 600 /etc/spotifyd.conf
 		echo -n "      Spotify Username: "
 		read username
 		echo -n "      Spotify Password: "
 		read password
 		if [ "$username" -a "$password" ]; then
-		  sed -i "s/^username =/username = $username/" /etc/spotifyd.conf
-		  sed -i "s/^password =/password = $password/" /etc/spotifyd.conf
+		  sudo sed -i "s/^username =/username = $username/" /etc/spotifyd.conf
+		  sudo sed -i "s/^password =/password = $password/" /etc/spotifyd.conf
 
 		  echo -e "$INFO Starting Spotifyd"
-		  systemctl start spotifyd.service
+		  sudo systemctl start spotifyd.service
 		else
 		  echo -e "$WARNING: Empty username or password given."
 		  echo    "          Please configure manually in /etc/spotifyd.conf"
@@ -70,3 +68,5 @@ if [ "$answer" = "y" ]; then
   fi
 fi
 echo
+
+popd > /dev/null

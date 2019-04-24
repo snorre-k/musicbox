@@ -2,16 +2,13 @@
 
 ## Plexamp as Audio Service
 
-if [[ $EUID -ne 0 ]]; then
-   echo "This script must be run as root" 
-   exit 1
-fi
-
-# Import Color Definition
+# Import Helpers
 DIR=`dirname $0`
 pushd $DIR > /dev/null
-. ../colors.sh
-popd > /dev/null
+. ../various/helpers.sh
+
+# Check User
+check_user_ability
 
 echo -e "$INFO Installation of Plexamp running as Audio service"
 echo -e "$WARNING Plexamp needs NODEJS version 9.x"
@@ -38,17 +35,17 @@ if [ "$answer" = "y" ]; then
   if [ $? -eq 0 ]; then
     if [ -f node-$VERSION-$DISTRO.tar.gz ]; then
       echo -e "$INFO Extracting and linking NODEJS $VERSION for $DISTRO"
-      mkdir -p /usr/local/lib/nodejs
-      tar -xf node-$VERSION-$DISTRO.tar.gz -C /usr/local/lib/nodejs
-      cat << EOF > /etc/profile.d/nodejs.sh
+      sudo mkdir -p /usr/local/lib/nodejs
+      sudo tar -xf node-$VERSION-$DISTRO.tar.gz -C /usr/local/lib/nodejs
+      cat << EOF | sudo tee /etc/profile.d/nodejs.sh > /dev/null
 # Nodejs
 VERSION=$VERSION
 DISTRO=$DISTRO
 export PATH=/usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin:$PATH
 EOF
-      ln -s /usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin/node /usr/bin/node
-      ln -s /usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin/npm /usr/bin/npm
-      ln -s /usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin/npx /usr/bin/npx
+      sudo ln -s /usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin/node /usr/bin/node
+      sudo ln -s /usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin/npm /usr/bin/npm
+      sudo ln -s /usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin/npx /usr/bin/npx
 	else
 	  echo -e "$ERROR File $VERSION/node-$VERSION-$DISTRO.tar.gz not found"
 	fi
@@ -75,12 +72,12 @@ if [ "$answer" = "y" ]; then
   if [ $? -eq 0 ]; then
     if [ -f $DLFILE ]; then
 	  echo -e "$INFO Extracting $DLFILE in /home/pi"
-	  tar -xf $DLFILE -C /home/pi
+	  sudo tar -xf $DLFILE -C /home/pi
 	  popd
 	  echo -e "$INFO Installing Plexamp service"
-	  cp /home/pi/plexamp/plexamp.service /etc/systemd/system/
-	  systemctl daemon-reload
-	  systemctl enable plexamp.service
+	  sudo cp /home/pi/plexamp/plexamp.service /etc/systemd/system/
+	  sudo systemctl daemon-reload
+	  sudo systemctl enable plexamp.service
 
 	  echo -e "$WARNING You have to configure Plexamp!"
 	  echo    "         - Download a desktop version from https://plexamp.com/"
@@ -118,3 +115,5 @@ if [ "$answer" = "y" ]; then
   fi
 fi
 echo
+
+popd > /dev/null

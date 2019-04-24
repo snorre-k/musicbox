@@ -15,3 +15,11 @@ alias TSRESET="tput sgr0"
 export INFO="${green}INFO:${white}"
 export ERROR="${red}ERROR:${white}"
 export WARNING="${magenta}WARNING:${white}"
+
+# Check sudo ability
+function check_user_ability () {
+  if ! sudo -S true < /dev/null &>/dev/null; then
+    echo -e "$ERROR This user is not able to 'sudo' w/o password"
+    exit 1
+  fi
+}

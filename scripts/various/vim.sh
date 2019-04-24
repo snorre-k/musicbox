@@ -2,25 +2,23 @@
 
 ## VIM & Mouse Off
 
-if [[ $EUID -ne 0 ]]; then
-   echo "This script must be run as root" 
-   exit 1
-fi
-
-# Import Color Definition
+# Import Helpers
 DIR=`dirname $0`
 pushd $DIR > /dev/null
-. ./colors.sh
+. ./helpers.sh
 popd > /dev/null
 
+# Check User
+check_user_ability
+
 # Install VIM
-echo -e "$INFO Installing VIM"
-apt update
-apt install -y vim
+echo -e "$INFO Installing VIM (if it is missing)"
+sudo apt update
+sudo apt install -y vim
 
 # Config VIM to disable mouse support and set syntax highlighting on black background (Putty)
 echo -e "$INFO Configuring VIM - no mouse - syntax"
-cat << EOF  > /etc/vim/vimrc.local
+cat << EOF  | sudo tee /etc/vim/vimrc.local > /dev/null
 let g:skip_defaults_vim = 1
 syntax on
 set background=dark

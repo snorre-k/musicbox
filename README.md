@@ -49,8 +49,7 @@ THX to
   - `cd ~/sw`
   - `git clone https://github.com/snorre-k/musicbox.git`
 - Start the Installation
-  - `cd musicbox/scripts`
-  - `sudo ./start_install.sh`
+  - `./musicbox/scripts/start_install.sh`
 
 ## Single components installation
 
@@ -58,8 +57,8 @@ Single components can be installed by changing to the relevant subdirectory and 
 
 ## Additional PI config
 
-- NTP - use DHCP supplied DHCP servers: `sudo ./scripts/ntp_dhcp.sh`
-- VIM installation including some configuration: `sudo ./scripts/vim.sh`
+- NTP - use DHCP supplied DHCP servers: `./various/scripts/ntp_dhcp.sh`
+- VIM installation including some configuration: `./various/scripts/vim.sh`
 
 ## Warning
 

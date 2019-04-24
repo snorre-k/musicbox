@@ -2,19 +2,17 @@
 
 ## NTP use DHCP supplied NTP server
 
-if [[ $EUID -ne 0 ]]; then
-   echo "This script must be run as root" 
-   exit 1
-fi
-
-# Import Color Definition
+# Import Helpers
 DIR=`dirname $0`
 pushd $DIR > /dev/null
-. ./colors.sh
+. ./helpers.sh
 popd > /dev/null
 
+# Check User
+check_user_ability
+
 echo -e "$INFO Settings for using the DHCP supplied NTP servers"
-cat << EOF  > /lib/dhcpcd/dhcpcd-hooks/50-timesyncd.conf
+cat << EOF  | sudo tee /lib/dhcpcd/dhcpcd-hooks/50-timesyncd.conf > /dev/null
 # Set NTP servers for systemd-timesyncd
 
 confd=/run/systemd/timesyncd.conf.d

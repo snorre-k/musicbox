@@ -1,10 +1,14 @@
 #!/bin/bash
 
 $CFG=/home/pi/.config/Plexamp/server.json
-DIR=`dirname $0`
 
+# Import Helpers
+DIR=`dirname $0`
 pushd $DIR > /dev/null
-. ../colors.sh
+. ../various/helpers.sh
+
+# Check User
+check_user_ability
 
 echo -n "player name: "
 read playername
@@ -17,15 +21,15 @@ read usertoken
 
 if [ "$playername" -a "playerid" -a "userid" -a "usertoken" ]; then
   echo -e "$INFO Configuring Plexamp"
-  cp server.json $CFG
-  chown pi:pi $CFG
-  chmod 600 $CFG
-  sed -i "s/playername/$playername/" $CFG
-  sed -i "s/playerid/$playerid/" $CFG
-  sed -i "s/userid/$userid/" $CFG
-  sed -i "s/usertoken/$usertoken/" $CFG
+  sudo cp server.json $CFG
+  sudo chown pi:pi $CFG
+  sudo chmod 600 $CFG
+  sudo sed -i "s/playername/$playername/" $CFG
+  sudo sed -i "s/playerid/$playerid/" $CFG
+  sudo sed -i "s/userid/$userid/" $CFG
+  sudo sed -i "s/usertoken/$usertoken/" $CFG
   echo -e "$INFO Starting Plexamp"
-  systemctl start plexamp.service
+  sudo systemctl start plexamp.service
 else
   echo "$ERROR At least one of the parameters were empty - Please try again"
   echo "       Call: $0"

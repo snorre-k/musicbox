@@ -2,16 +2,15 @@
 
 ## ALSA with HifiBerry DAC
 
-if [[ $EUID -ne 0 ]]; then
-   echo "This script must be run as root" 
-   exit 1
-fi
-
-# Import Color Definition
+# Import Helpers
 DIR=`dirname $0`
 pushd $DIR > /dev/null
-. ../colors.sh
+. ../various/helpers.sh
 popd > /dev/null
+
+# Check User
+check_user_ability
+
 
 echo -e "$INFO Configuring overlay for HifiBerry DAC"
 echo    "      If you own other DACs - Skip this step"
@@ -23,15 +22,15 @@ answer=`echo "$answer" | tr '[:upper:]' '[:lower:]'`
 
 if [ "$answer" = "y" ]; then
   # disable onboard audio
-  sed -i "s/dtparam=audio=on/#dtparam=audio=on/" /boot/config.txt
+  sudo sed -i "s/dtparam=audio=on/#dtparam=audio=on/" /boot/config.txt
   # enable HifiBerry overlay
-  cat << EOF >> /boot/config.txt
+  cat << EOF | sudo tee -a /boot/config.txt > /dev/null
 
   # HifiBerry
 dtoverlay=hifiberry-dac
 dtoverlay=i2s-mmap
 EOF
   # ALSA Sound Configuration - Setup a mixer that allows more than one source
-  cp asound.conf /etc
+  sudo cp asound.conf /etc
 fi
 echo
