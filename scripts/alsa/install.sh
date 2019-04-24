@@ -23,7 +23,7 @@ answer=`echo "$answer" | tr '[:upper:]' '[:lower:]'`
 
 if [ "$answer" = "y" ]; then
   # disable onboard audio
-  sed -i "s/dtparam=audio=on/#dtparam=audio=on" /boot/config.txt
+  sed -i "s/dtparam=audio=on/#dtparam=audio=on/" /boot/config.txt
   # enable HifiBerry overlay
   cat << EOF >> /boot/config.txt
 
@@ -32,5 +32,5 @@ dtoverlay=hifiberry-dac
 dtoverlay=i2s-mmap
 EOF
   # ALSA Sound Configuration - Setup a mixer that allows more than one source
-  cp asound.conf > /etc
+  cp asound.conf /etc
 fi
