@@ -10,8 +10,6 @@ pushd $DIR > /dev/null
 # Check User
 check_user_ability
 
-echo -e "$ERROR BT is buggy - has to be investigated"
-exit
 echo -e "$INFO Installing Bluetooth Audio"
 echo -n "Do you want to continue [y/N]: "
 read answer
@@ -19,14 +17,10 @@ answer=`echo "$answer" | tr '[:upper:]' '[:lower:]'`
 
 if [ "$answer" = "y" ]; then
   echo -e "$INFO Installing software"
-  sudo apt install -y alsa-base alsa-utils bluealsa bluez python-gobject python-dbus vorbis-tools sound-theme-freedesktop
+  sudo apt install -y alsa-base bluealsa python-gobject python-dbus vorbis-tools sound-theme-freedesktop
 
   echo -e "$INFO Configuring Bluetooth (appear as audio device)"
   sudo cp main.conf /etc/bluetooth/main.conf
-
-  echo -e "$INFO Settings for BT Controller"
-  sudo hciconfig hci0 piscan
-  sudo hciconfig hci0 sspmode 1
 
   echo -e "$INFO Copying scripts"
   sudo cp bluetooth-agent bluetooth-udev /usr/local/sbin/
@@ -52,6 +46,10 @@ EOF
 
   echo -e "$INFO Install udev rule - BT device connect/disconnect"
   sudo cp 99-bluetooth-udev.rules /etc/udev/rules.d
+
+  echo -e "$INFO Settings for BT Controller"
+  sudo hciconfig hci0 piscan
+  sudo hciconfig hci0 sspmode 1
 fi
 echo
 
