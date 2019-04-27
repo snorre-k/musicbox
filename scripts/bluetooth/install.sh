@@ -30,9 +30,7 @@ if [ "$answer" = "y" ]; then
 
   echo -e "$INFO Enabling services"
   sudo systemctl daemon-reload
-  sudo systemctl enable bluetooth-agent.service
-  sudo systemctl enable bluealsa-aplay
-  sudo systemctl enable startup-sound
+  sudo systemctl enable bluetooth-agent.service bluealsa-aplay startup-sound
 
   echo -e "$INFO Changing bluealsa.service"
   sudo mkdir -p /etc/systemd/system/bluealsa.service.d
@@ -50,6 +48,12 @@ EOF
   echo -e "$INFO Settings for BT Controller"
   sudo hciconfig hci0 piscan
   sudo hciconfig hci0 sspmode 1
+
+  echo -e "$INFO Starting Bluetooth services"
+  sudo systemctl daemon-reload
+  sudo systemctl restart bluetooth
+  sudo systemctl start bluetooth-agent.service bluealsa-aplay
+
 fi
 echo
 
