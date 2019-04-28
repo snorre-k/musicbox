@@ -65,7 +65,7 @@ THX to
   - Spotify
   - TuneIn - web radio
   - local or remore radio streams
-- If you have a client with Zeroconf support (AVAHI / mDNS / Bonjour), you can use http://hostname_of_pi.local
+- If you have a client with Zeroconf support (AVAHI / mDNS / Bonjour), you can use http://hostname-of-pi.local
   - Windows clients can install Apple [iTunes](https://support.apple.com/downloads/itunes) or [Bonjour Print Services for Windows](https://support.apple.com/kb/DL999) to get Bonjour support
 
 ## Single components installation
