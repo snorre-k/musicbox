@@ -6,8 +6,9 @@ Some scripts to create a RPI musicbox with a [HifiBerry DAC](https://www.hifiber
 
 - Spotify Connect Server: [spotifyd](https://github.com/Spotifyd/spotifyd)
 - Plex Audio Player: [plexamp](https://plexamp.com/)
-- MPD with TuneIn and Spotify Integration: [mopidy](https://www.mopidy.com/)
+- Music Player Daemon (MPD) with TuneIn and Spotify Integration: [mopidy](https://www.mopidy.com/)
 - Bluetooth Audio: [bluealsa](https://github.com/Arkq/bluez-alsa)
+- Zeroconf: [avahi-daemon](https://www.avahi.org/)
 
 ## Inspired by
 
@@ -64,6 +65,8 @@ THX to
   - Spotify
   - TuneIn - web radio
   - local or remore radio streams
+- If you have a client with Zeroconf support (AVAHI / mDNS / Bonjour), you can use http://hostname_of_pi.local
+  - Windows clients can install Apple [iTunes](https://support.apple.com/downloads/itunes) or [Bonjour Print Services for Windows](https://support.apple.com/kb/DL999) to get Bonjour support
 
 ## Single components installation
 

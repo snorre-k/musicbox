@@ -16,6 +16,7 @@ echo    "      Bluetooth setup for \"bluealsa\""
 echo    "      Mopidy Setup"
 echo    "      Plexamp Setup"
 echo    "      Spotifyd Setup"
+echo    "      Zeroconf / AVAHI / Bonjour Setup"
 echo
 echo "Press return to continue ..."
 read xxx
@@ -42,6 +43,11 @@ popd > /dev/null
 
 # Spotifyd
 pushd ./spotifyd > /dev/null
+./install.sh
+popd > /dev/null
+
+# AVAHI
+pushd ./zeroconf > /dev/null
 ./install.sh
 popd > /dev/null
 

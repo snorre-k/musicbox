@@ -11,10 +11,12 @@ export blue='\E[34m'
 export magenta='\E[35m'
 export cyan='\E[36m'
 export white='\E[37m'
+export reset='\E[0m'
+export bold='\E[1m'
 alias TSRESET="tput sgr0"
-export INFO="${green}INFO:${white}"
-export ERROR="${red}ERROR:${white}"
-export WARNING="${magenta}WARNING:${white}"
+export INFO="${green}INFO:${reset}"
+export ERROR="${red}ERROR:${reset}"
+export WARNING="${magenta}WARNING:${reset}"
 
 # Check sudo ability
 function check_user_ability () {

@@ -100,7 +100,7 @@ if [ "$answer" = "y" ]; then
         ./config_plexamp.sh
       else
         echo -e "$INFO You can call the configuration script manually later:"
-        echo    "      `pwd`/config_plexamp.sh"
+        echo -e "      ${bold}`pwd`/config_plexamp.sh${reset}"
         echo
         echo "Press return to continue ..."
         read xxx
