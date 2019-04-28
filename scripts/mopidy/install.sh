@@ -37,6 +37,8 @@ EOF
 
   echo -e "$INFO Installing Upmpdcli"
   sudo apt install -y upmpdcli
+  sudo sed -i "s/^friendlyname =.*/friendlyname = `hostname`/" /etc/upmpdcli.conf
+  sudo systemctl restart upmpdcli.service
 
   echo -e "$INFO Installing Web GUI with pip"
   sudo pip install Mopidy-Moped Mopidy-Iris
