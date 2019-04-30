@@ -22,7 +22,6 @@ if [ "$answer" = "y" ]; then
   wget -q -O - https://apt.mopidy.com/mopidy.gpg | sudo apt-key add -
   sudo wget -q -O /etc/apt/sources.list.d/mopidy.list https://apt.mopidy.com/stretch.list
   # upmpdcli
-  sudo apt update
   sudo apt install -y --no-install-recommends dirmngr
   gpg --recv-key F8E3347256922A8AE767605B7808CE96D38B9201
   gpg --export F8E3347256922A8AE767605B7808CE96D38B9201 | sudo apt-key add -
