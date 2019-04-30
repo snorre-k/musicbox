@@ -15,7 +15,7 @@ echo -e "$INFO Puting some aliases into the global profile"
 cat << EOF  | sudo tee /etc/profile.d/aliase.sh > /dev/null
 # color ls and shortcuts
 export LS_OPTIONS='--color=auto'
-eval "`dircolors`"
+eval "\`dircolors\`"
 alias l='ls $LS_OPTIONS -lA'
 alias la='ls $LS_OPTIONS -la'
 alias ll='ls $LS_OPTIONS -l'
