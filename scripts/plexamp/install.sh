@@ -15,8 +15,8 @@ echo -e "$WARNING Plexamp needs NODEJS version 9.x"
 echo    "         This is not available for armv61 (RPI 1 and PI Zero) as package"
 echo    "         Therefore we install it as binary download"
 echo    "         If you have armv71 (RPI 2/3), skip this step and do the following:"
-echo    "         - curl -sL https://deb.nodesource.com/setup_9.x | sudo -E bash -"
-echo    "         - sudo apt install -y nodejs"
+echo -e "         - ${bold}curl -sL https://deb.nodesource.com/setup_9.x | sudo -E bash -${reset}"
+echo -e "         - ${bold}sudo apt install -y nodejs${reset}"
 echo
 echo -e "$INFO Your hardware is: `uname -m`"
 echo -n "Do you want to install binary NODEJS for armv61 [y/N]: "
@@ -80,19 +80,20 @@ if [ "$answer" = "y" ]; then
       sudo systemctl enable plexamp.service
 
       echo -e "$WARNING You have to configure Plexamp!"
-      echo    "         - Download a desktop version from https://plexamp.com/"
+      echo -e "         - Download a desktop version from ${bold}https://plexamp.com/${reset}"
       echo    "         - Install it on your desktop"
       echo    "         - Start it and sign in to your Plex account:"
       echo    "           + Use the hostname of your PI musicbox as PLAYER NAME"
       echo    "         - Get the \"server.json\" file:"
-      echo    "           + Windows: \"type %LOCALAPPDATA%\\Plexamp\\Plexamp\\server.json\""
-      echo    "           + Linux: \"cat ~/.config/Plexamp/server.json\""
+      echo -e "           + Windows cmd: ${bold}type %LOCALAPPDATA%\\Plexamp\\Plexamp\\server.json${reset}"
+      echo -e "           + Linux bash: ${bold}cat ~/.config/Plexamp/server.json${reset}"
       echo    "           + macOS: Sorry, I do not own a MAC - please find it yourself"
-      echo    "         - Copy the content of \"server.json\" to your PI to:"
-      echo    "           + /home/pi/.config/Plexamp/server.json"
+      echo -e "         - Copy the content of ${bold}server.json${reset} to your PI to:"
+      echo -e "           + ${bold}/home/pi/.config/Plexamp/server.json${reset}"
       echo    "         - Sign out and back into your existing desktop install to get a new identifier/token"
       echo    "         - After configuration you can reboot to start Plexamp"
-      echo -e "$INFO If you know the content of the server.json file, I can configure plexamp for you"
+      echo
+      echo -e "$INFO If you know the content of the ${bold}server.json${reset} file, I can configure plexamp for you"
       echo -n "Shall I configure Plexamp [y/N]: "
       read answer
       answer=`echo "$answer" | tr '[:upper:]' '[:lower:]'`

@@ -50,7 +50,7 @@ port = 6680
 
 EOF
   echo -e "$INFO Configuring Spotify in Mopidy"
-  echo -e "      Please open a browser and authenticate with Spoitify at https://www.mopidy.com/authenticate/#spotify"
+  echo -e "      Please open a browser and authenticate with Spoitify at ${bold}https://www.mopidy.com/authenticate/#spotify${reset}"
   echo
   echo    "      Please enter the output below:"
   echo -n "      client_id: "

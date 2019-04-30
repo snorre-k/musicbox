@@ -11,7 +11,6 @@ popd > /dev/null
 # Check User
 check_user_ability
 
-echo -e "$INFO Settings for using the DHCP supplied NTP servers"
 cat << EOF  | sudo tee /lib/dhcpcd/dhcpcd-hooks/50-timesyncd.conf > /dev/null
 # Set NTP servers for systemd-timesyncd
 
@@ -35,3 +34,5 @@ if $if_up; then
     fi
 fi
 EOF
+echo -e "$INFO Settings done for using the DHCP supplied NTP servers"
+
