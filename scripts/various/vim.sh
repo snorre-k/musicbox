@@ -14,7 +14,7 @@ check_user_ability
 # Install VIM
 echo -e "$INFO Installing VIM (if it is missing)"
 sudo apt update
-sudo apt install -y vim
+sudo apt install -y --no-install-recommends vim
 
 # Config VIM to disable mouse support and set syntax highlighting on black background (Putty)
 echo -e "$INFO Configuring VIM - no mouse - syntax"
