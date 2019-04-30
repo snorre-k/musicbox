@@ -22,21 +22,18 @@ if [ "$answer" = "y" ]; then
   wget -q -O - https://apt.mopidy.com/mopidy.gpg | sudo apt-key add -
   sudo wget -q -O /etc/apt/sources.list.d/mopidy.list https://apt.mopidy.com/stretch.list
   # upmpdcli
-  sudo apt install -y --no-install-recommends dirmngr
+  sudo apt install -y dirmngr
   gpg --recv-key F8E3347256922A8AE767605B7808CE96D38B9201
   gpg --export F8E3347256922A8AE767605B7808CE96D38B9201 | sudo apt-key add -
-  cat << EOF | sudo tee -a /etc/apt/sources.list.d/upmpdcli.list > /dev/null
+  cat << EOF | sudo tee /etc/apt/sources.list.d/upmpdcli.list > /dev/null
 deb http://www.lesbonscomptes.com/upmpdcli/downloads/raspbian/ stretch main
 deb-src http://www.lesbonscomptes.com/upmpdcli/downloads/raspbian/ stretch main
 EOF
 
 
-  echo -e "$INFO Installing Mopidy and Plugins"
+  echo -e "$INFO Installing Mopidy, Upmpdcli and Plugins"
   sudo apt update
-  sudo apt install -y --no-install-recommends mopidy mopidy-tunein mopidy-spotify python-pip gstreamer1.0-plugins-bad gstreamer1.0-libav
-
-  echo -e "$INFO Installing Upmpdcli"
-  sudo apt install -y --no-install-recommends upmpdcli
+  sudo apt install -y mopidy mopidy-tunein mopidy-spotify python-pip gstreamer1.0-plugins-bad gstreamer1.0-libav upmpdcli
   sudo sed -i "s/^friendlyname =.*/friendlyname = `hostname`/" /etc/upmpdcli.conf
   sudo systemctl restart upmpdcli.service
 

@@ -16,7 +16,7 @@ echo    "         This is not available for armv61 (RPI 1 and PI Zero) as packag
 echo    "         Therefore we install it as binary download"
 echo    "         If you have armv71 (RPI 2/3), skip this step and do the following:"
 echo    "         - curl -sL https://deb.nodesource.com/setup_9.x | sudo -E bash -"
-echo    "         - sudo apt install -y --no-install-recommends nodejs"
+echo    "         - sudo apt install -y nodejs"
 echo
 echo -e "$INFO Your hardware is: `uname -m`"
 echo -n "Do you want to install binary NODEJS for armv61 [y/N]: "
