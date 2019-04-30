@@ -43,13 +43,9 @@ THX to
   - `ssh pi@10.10.10.10`
   - Password: Password set before or `raspberry`
 - Install GIT
-  - `sudo apt update`
-  - `sudo apt upgrade -y`
-  - `sudo apt install -y git`
+  - `sudo apt update && sudo apt upgrade -y; sudo apt install -y git`
 - Clone this repository
-  - `mkdir ~/sw`
-  - `cd ~/sw`
-  - `git clone https://github.com/snorre-k/musicbox.git`
+  - `mkdir ~/sw; cd ~/sw; git clone https://github.com/snorre-k/musicbox.git`
 - Start the installation
   - `./musicbox/scripts/start_install.sh`
 - Reboot to get DAC overlay started
