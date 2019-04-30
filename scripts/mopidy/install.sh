@@ -32,6 +32,7 @@ EOF
 
 
   echo -e "$INFO Installing Mopidy and Plugins"
+  sudo apt update
   sudo apt install -y --no-install-recommends mopidy mopidy-tunein mopidy-spotify python-pip gstreamer1.0-plugins-bad gstreamer1.0-libav
 
   echo -e "$INFO Installing Upmpdcli"
