@@ -76,8 +76,9 @@ Single components can be installed by changing to the relevant subdirectory and 
 
 ## Additional PI config
 
-- NTP - use DHCP supplied DHCP servers: `./various/scripts/ntp_dhcp.sh`
-- VIM installation including some configuration: `./various/scripts/vim.sh`
+- NTP - use DHCP supplied DHCP servers: `./scripts/various/ntp_dhcp.sh`
+- VIM installation including some configuration: `./scripts/various/vim.sh`
+- Colorful directory listings and grep output - ls shortcuts (ll, l, la): `./scripts/various/aliases_for_all.sh`
 
 ## Warning
 
