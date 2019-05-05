@@ -74,7 +74,7 @@ Single components can be installed by changing to the relevant subdirectory and 
 
 - NTP - use DHCP supplied DHCP servers: `~/sw/musicbox/scripts/various/ntp_dhcp.sh`
 - VIM installation including some configuration: `~/sw/musicbox/scripts/various/vim.sh`
-- Colorful directory listings and grep output - ls shortcuts (ll, l, la): `~/sw/musicbox/scripts/various/aliases_for_all.sh`
+- Colorful directory listings and grep output - `ls` shortcuts (`ll`, `l`, `la`): `~/sw/musicbox/scripts/various/aliases_for_all.sh`
 
 ## Warning
 
