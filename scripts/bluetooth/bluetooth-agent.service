@@ -8,4 +8,6 @@ WantedBy=multi-user.target
 
 [Service]
 Type=simple
+ExecStartPre=/bin/sleep 5
 ExecStart=/usr/local/sbin/bluetooth-agent
+ExecStartPost=-/bin/hciconfig hci0 piscan
