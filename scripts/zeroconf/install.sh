@@ -18,7 +18,7 @@ answer=`echo "$answer" | tr '[:upper:]' '[:lower:]'`
 
 if [ "$answer" = "y" ]; then
   echo -e "$INFO Installing avahi daemon (if it is not installed)"
-  sudo apt install -y avahi-daemon
+  apt_install avahi-daemon
 
   echo -e "$INFO Configuring:"
 
