@@ -30,7 +30,7 @@ function check_user_ability () {
 
 # apt install error handling
 function apt_install () {
-  if [ "$@" ]; then
+  if [ $# -ne 0 ]; then
     sudo apt install -y $@
     if [ $? -eq 0 ]; then return 0
     else
