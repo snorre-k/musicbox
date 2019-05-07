@@ -63,7 +63,8 @@ THX to
   - TuneIn - web radio
   - local or remore radio streams
 - If you have a client with Zeroconf support (AVAHI / mDNS / Bonjour), you can use http://hostname-of-pi.local
-  - Windows clients can install Apple [iTunes](https://support.apple.com/downloads/itunes) or [Bonjour Print Services for Windows](https://support.apple.com/kb/DL999) to get Bonjour support
+  - New Windows 10 clients support mDNS out of the box
+  - Older Windows clients can install Apple [iTunes](https://support.apple.com/downloads/itunes) or [Bonjour Print Services for Windows](https://support.apple.com/kb/DL999) to get Bonjour support
 - Play Music using UPnP / DLNA
 
 ## Single components installation
