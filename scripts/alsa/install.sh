@@ -26,7 +26,7 @@ if [ "$answer" = "y" ]; then
   # enable HifiBerry overlay
   cat << EOF | sudo tee -a /boot/config.txt > /dev/null
 
-  # HifiBerry
+# HifiBerry
 dtoverlay=hifiberry-dac
 dtoverlay=i2s-mmap
 EOF

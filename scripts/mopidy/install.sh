@@ -93,7 +93,9 @@ EOF
   sudo systemctl start mopidy
 
   echo -e "$INFO Routing port 80 to 6680"
-  sudo sed -i '/^exit 0$/i /sbin/iptables -t nat -I PREROUTING -p tcp --dport 80 -j REDIRECT --to-ports 6680\n' /etc/rc.local
+  rc_local="# Routing port 80 to 6680 - mopidy HTTP\n"
+  rc_local="${rc_local}/sbin/iptables -t nat -I PREROUTING -p tcp --dport 80 -j REDIRECT --to-ports 6680\n"
+  sudo sed -i "/^exit 0$/i $rc_local" /etc/rc.local
   sudo /sbin/iptables -t nat -I PREROUTING -p tcp --dport 80 -j REDIRECT --to-ports 6680
 fi
 echo
