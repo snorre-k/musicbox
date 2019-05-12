@@ -18,6 +18,7 @@ cat << EOF | sudo tee -a /boot/config.txt > /dev/null
 # Shutdown on GPIO #3 - GND
 dtoverlay=gpio-shutdown
 EOF
+
 echo -e "$INFO After a reboot (to activate overlay) you can shutdown and startup"
 echo    "      Your PI with a pushbutton connected to GPIO #3 and ground"
 echo
@@ -43,6 +44,7 @@ if [[ $GPIO =~ ^[0-9]+$ ]]; then
     if  [ $GPIO -ge 18 -a $GPIO -le 21 ]; then
       echo -e "$WARNING GPIO #$GPIO is used by HifiBerry DAC -  - using ${bold}GPIO #$DEF_GPIO${reset}"
       GPIO=$DEF_GPIO
+    fi
   else
      echo -e "$WARNING GPIO #$GPIO out of usable range - using ${bold}GPIO #$DEF_GPIO${reset}"
      GPIO=$DEF_GPIO
