@@ -57,3 +57,4 @@ rc_local="${rc_local}echo $GPIO > /sys/class/gpio/export\n"
 rc_local="${rc_local}echo out > /sys/class/gpio/gpio$GPIO/direction\n"
 rc_local="${rc_local}echo 1 > /sys/class/gpio/gpio$GPIO/value\n"
 sudo sed -i "/^exit 0$/i $rc_local" /etc/rc.local
+
