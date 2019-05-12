@@ -29,7 +29,7 @@ read xxx
 DEF_GPIO=17
 echo -e "$INFO Configuring one GPIO pin to HIGH when OS is started"
 echo    "      This can be used to signal the OS state with a LED"
-echo -e "      Sample schematics: ${bold}https://....${reset}"
+echo -e "      Sample schematics: ${bold}https://github.com/snorre-k/musicbox/wiki/LED-OS-status-on-GPIO${reset}"
 echo
 echo "Press return to continue ..."
 read xxx
