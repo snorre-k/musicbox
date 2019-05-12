@@ -37,7 +37,7 @@ if [ "$answer" = "y" ]; then
         sudo sed -i "s/^dc_eximconfig_configtype=.*/dc_eximconfig_configtype='smarthost'/" /etc/exim4/update-exim4.conf.conf
         sudo sed -i "s/^dc_smarthost=.*/dc_smarthost='$smarthost'/" /etc/exim4/update-exim4.conf.conf
         sudo sed -i "s/^dc_hide_mailname=.*/dc_hide_mailname='false'/" /etc/exim4/update-exim4.conf.conf
-        /usr/sbin/update-exim4.conf
+        sudo /usr/sbin/update-exim4.conf
       else
         echo -e "$ERROR No smarthost specified. Setting recipient to default user ${bold}$def_rcpt${reset}"
         rcpt=$def_rcpt
@@ -72,12 +72,13 @@ if [ "$answer" = "y" ]; then
   # Check and convert time format for download
   if dl_time_formated=$(date -d "$dl_time" +%H:%M 2> /dev/null); then
     sudo mkdir -p /etc/systemd/system/apt-daily.timer.d
-    cat << EOF | sudo tee /etc/systemd/system/apt-daily.timer.d/override.conf
+    cat << EOF | sudo tee /etc/systemd/system/apt-daily.timer.d/override.conf > /dev/null
 [Timer]
 OnCalendar=
 OnCalendar=$dl_time_formated
 RandomizedDelaySec=0
 EOF
+    sudo systemctl daemon-reload
     sudo systemctl restart apt-daily.timer
   else echo -e "$ERROR Download time ${bold}$dl_time${reset} is not a valid time format"
   fi
@@ -85,12 +86,13 @@ EOF
   # Check and convert time format for upgrade
   if up_time_formated=$(date -d "$up_time" +%H:%M 2> /dev/null); then
     sudo mkdir -p /etc/systemd/system/apt-daily-upgrade.timer.d
-    cat << EOF | sudo tee /etc/systemd/system/apt-daily-upgrade.timer.d/override.conf
+    cat << EOF | sudo tee /etc/systemd/system/apt-daily-upgrade.timer.d/override.conf > /dev/null
 [Timer]
 OnCalendar=
 OnCalendar=$up_time_formated
 RandomizedDelaySec=0
 EOF
+    sudo systemctl daemon-reload
     sudo systemctl restart apt-daily-upgrade.timer
   else echo -e "$ERROR Upgrade time ${bold}$up_time${reset} is not a valid time format"
   fi
