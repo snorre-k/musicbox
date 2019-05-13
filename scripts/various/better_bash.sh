@@ -1,6 +1,6 @@
 #!/bin/bash
 
-## some aliases in /etc/profile.d
+## some ssh / bash improvements
 
 # Import Helpers
 DIR=`dirname $0`
@@ -11,6 +11,7 @@ popd > /dev/null
 # Check User
 check_user_ability
 
+## some aliases in /etc/profile.d
 echo -e "$INFO Puting some aliases into the global profile"
 cat << EOF  | sudo tee /etc/profile.d/aliase.sh > /dev/null
 # color ls and shortcuts
@@ -26,3 +27,8 @@ alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias grep='grep --color=auto'
 EOF
+
+# Set Putty Window Title also for root
+echo -e "$INFO Setting ROOT PS1"
+sudo echo 'PS1='"'"'\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '"'" >> /root/.bashrc
+
