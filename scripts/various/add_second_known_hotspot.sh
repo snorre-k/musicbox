@@ -25,8 +25,8 @@ if [ "$SSID" -a "$PASSWORD" ]; then
   # Set existing WIFI to prio1
   sudo sed -i '/ssid=/a \tpriority=1' /etc/wpa_supplicant/wpa_supplicant.conf
   wpa_add=`/usr/bin/wpa_passphrase "$SSID" "$PASSWORD" | grep -v "#" | sed "/ssid=/a \        priority=2"`
-  sudo echo >> /etc/wpa_supplicant/wpa_supplicant.conf
-  sudo echo "$wpa_add" >> /etc/wpa_supplicant/wpa_supplicant.conf
+  echo | sudo tee -a /etc/wpa_supplicant/wpa_supplicant.conf > /dev/null
+  echo "$wpa_add" | sudo tee -a /etc/wpa_supplicant/wpa_supplicant.conf > /dev/null
 else
   echo -e "$ERROR SSID or PSK not given - not configuring 2nd WIFI"
 fi

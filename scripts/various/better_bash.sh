@@ -30,5 +30,5 @@ EOF
 
 # Set Putty Window Title also for root
 echo -e "$INFO Setting ROOT PS1"
-sudo echo 'PS1='"'"'\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '"'" >> /root/.bashrc
+echo 'PS1='"'"'\[\e]0;\u@\h: \w\a\]${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '"'" | sudo tee -a /root/.bashrc > /dev/null
 
