@@ -22,9 +22,9 @@ echo -n "Network password: "
 read PASSWORD
 
 if [ "$SSID" -a "$PASSWORD" ]; then
-  # Set existing WIFI to prio1
+  # Set existing WIFI to prio 1
   sudo sed -i '/ssid=/a \        priority=1' /etc/wpa_supplicant/wpa_supplicant.conf
-  wpa_add=`/usr/bin/wpa_passphrase "$SSID" "$PASSWORD" | grep -v "#" | sed "/ssid=/a \        priority=2"`
+  wpa_add=`/usr/bin/wpa_passphrase "$SSID" "$PASSWORD" | grep -v "#"`
   echo | sudo tee -a /etc/wpa_supplicant/wpa_supplicant.conf > /dev/null
   echo "$wpa_add" | sudo tee -a /etc/wpa_supplicant/wpa_supplicant.conf > /dev/null
 else
