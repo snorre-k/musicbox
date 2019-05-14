@@ -83,6 +83,7 @@ Single components can be installed by changing to the relevant subdirectory and 
 - Automatic Upgrades: `~/sw/musicbox/scripts/various/auto_upgrade.sh`
 - Add 2nd WIFI network configuration: `~/sw/musicbox/scripts/various/add_second_known_hotspot.sh`
   - You can add the Tethering / Personal Hotspot of your smartphone to access the musicbox with the phone. This helps a lot, when the primary WIFI is not found or available.
+  - Access the BOX with http://hostname-of-pi.local
 
 ## Warning
 
