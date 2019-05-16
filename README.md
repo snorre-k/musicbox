@@ -57,7 +57,7 @@ THX to
 - Use your box as Spotify device
 - Connect to your box with Bluetooth and play music
 - Use your box as Plex Audio Player
-- Go to http://ip-of-your-device and use __iris__ as webclients to play
+- Go to http://ip-of-your-device and use __iris__ as webclient to play
   - Local Media
   - Spotify
   - TuneIn - web radio
