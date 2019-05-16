@@ -38,7 +38,7 @@ EOF
   sudo systemctl restart upmpdcli.service
 
   echo -e "$INFO Installing Web GUI with pip"
-  sudo pip install Mopidy-Moped Mopidy-Iris
+  sudo pip install Mopidy-Iris
 
   echo -e "$INFO Settings in /etc/mopidy/mopidy.conf"
   cat << EOF | sudo tee -a /etc/mopidy/mopidy.conf > /dev/null
