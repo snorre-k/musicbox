@@ -23,7 +23,7 @@ if [ "$answer" = "y" ]; then
   sudo wget -q -O /etc/apt/sources.list.d/mopidy.list https://apt.mopidy.com/stretch.list
   # upmpdcli
   apt_install dirmngr
-  gpg --recv-key F8E3347256922A8AE767605B7808CE96D38B9201
+  gpg --keyserver pool.sks-keyservers.net --recv-key F8E3347256922A8AE767605B7808CE96D38B9201
   gpg --export F8E3347256922A8AE767605B7808CE96D38B9201 | sudo apt-key add -
   cat << EOF | sudo tee /etc/apt/sources.list.d/upmpdcli.list > /dev/null
 deb http://www.lesbonscomptes.com/upmpdcli/downloads/raspbian/ stretch main
