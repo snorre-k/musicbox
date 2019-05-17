@@ -52,6 +52,8 @@ pushd ./zeroconf > /dev/null
 popd > /dev/null
 
 echo -e "$INFO FINISHED"
+echo -e "$INFO Rebooting"
+sudo /sbin/reboot
 
 popd > /dev/null
 
