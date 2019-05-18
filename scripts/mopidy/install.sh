@@ -26,7 +26,7 @@ if [ "$answer" = "y" ]; then
   apt_install dirmngr
   gpg --keyserver pool.sks-keyservers.net --recv-key F8E3347256922A8AE767605B7808CE96D38B9201
   if [ $? -ne 0 ]; then
-    gpg --keyserver --recv-key F8E3347256922A8AE767605B7808CE96D38B9201
+    gpg --recv-key F8E3347256922A8AE767605B7808CE96D38B9201
     if [ $? -ne 0 ]; then
       echo -e "$ERROR Signing key for repository containing upmpdcli could not be fetched"
       echo -e "       Not installing ${bold}upmpdcli${reset}"
