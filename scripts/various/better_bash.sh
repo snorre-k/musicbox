@@ -17,10 +17,10 @@ cat << EOF  | sudo tee /etc/profile.d/aliase.sh > /dev/null
 # color ls and shortcuts
 export LS_OPTIONS='--color=auto'
 eval "\`dircolors\`"
-alias l='ls $LS_OPTIONS -lA'
-alias la='ls $LS_OPTIONS -la'
-alias ll='ls $LS_OPTIONS -l'
-alias ls='ls $LS_OPTIONS'
+alias l='ls \$LS_OPTIONS -lA'
+alias la='ls \$LS_OPTIONS -la'
+alias ll='ls \$LS_OPTIONS -l'
+alias ls='ls \$LS_OPTIONS'
 
 # color grep
 alias egrep='egrep --color=auto'
