@@ -24,7 +24,7 @@ if [ "$answer" = "y" ]; then
   # upmpdcli
   NO_upmpdcli=0
   apt_install dirmngr
-  gpg --keyserver pool.sks-keyservers.net --recv-key F8E3347256922A8AE767605B7808CE96D38B9201
+  gpg --keyserver pool.sks-keyservers.net --keyserver-options timeout=10 --recv-key F8E3347256922A8AE767605B7808CE96D38B9201
   if [ $? -ne 0 ]; then
     gpg --recv-key F8E3347256922A8AE767605B7808CE96D38B9201
     if [ $? -ne 0 ]; then
