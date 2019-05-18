@@ -22,20 +22,36 @@ if [ "$answer" = "y" ]; then
   wget -q -O - https://apt.mopidy.com/mopidy.gpg | sudo apt-key add -
   sudo wget -q -O /etc/apt/sources.list.d/mopidy.list https://apt.mopidy.com/stretch.list
   # upmpdcli
+  NO_upmpdcli=0
   apt_install dirmngr
   gpg --keyserver pool.sks-keyservers.net --recv-key F8E3347256922A8AE767605B7808CE96D38B9201
-  gpg --export F8E3347256922A8AE767605B7808CE96D38B9201 | sudo apt-key add -
-  cat << EOF | sudo tee /etc/apt/sources.list.d/upmpdcli.list > /dev/null
+  if [ $? -ne 0 ]; then
+    gpg --keyserver --recv-key F8E3347256922A8AE767605B7808CE96D38B9201
+    if [ $? -ne 0 ]; then
+      echo -e "$ERROR Signing key for repository containing upmpdcli could not be fetched"
+      echo -e "       Not installing ${bold}upmpdcli${reset}"
+      NO_upmpdcli=1
+    fi
+  fi
+  if [ $NO_upmpdcli -eq 0 ]; then
+    gpg --export F8E3347256922A8AE767605B7808CE96D38B9201 | sudo apt-key add -
+    cat << EOF | sudo tee /etc/apt/sources.list.d/upmpdcli.list > /dev/null
 deb http://www.lesbonscomptes.com/upmpdcli/downloads/raspbian/ stretch main
 deb-src http://www.lesbonscomptes.com/upmpdcli/downloads/raspbian/ stretch main
 EOF
+  fi
 
-
-  echo -e "$INFO Installing Mopidy, Upmpdcli and Plugins"
-  sudo apt update
-  apt_install mopidy mopidy-tunein mopidy-spotify python-pip gstreamer1.0-plugins-bad gstreamer1.0-libav upmpdcli
-  sudo sed -i "s/^friendlyname =.*/friendlyname = `hostname`/" /etc/upmpdcli.conf
-  sudo systemctl restart upmpdcli.service
+  if [ $NO_upmpdcli -eq 0 ]; then
+    echo -e "$INFO Installing Mopidy, Upmpdcli and Plugins"
+    sudo apt update
+    apt_install mopidy mopidy-tunein mopidy-spotify python-pip gstreamer1.0-plugins-bad gstreamer1.0-libav upmpdcli
+    sudo sed -i "s/^friendlyname =.*/friendlyname = `hostname`/" /etc/upmpdcli.conf
+    sudo systemctl restart upmpdcli.service
+  else
+    echo -e "$INFO Installing Mopidyi and Plugins"
+    sudo apt update
+    apt_install mopidy mopidy-tunein mopidy-spotify python-pip gstreamer1.0-plugins-bad gstreamer1.0-libav
+  fi
 
   echo -e "$INFO Installing Web GUI with pip"
   sudo pip install Mopidy-Iris
