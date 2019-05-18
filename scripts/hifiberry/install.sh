@@ -6,7 +6,6 @@
 DIR=`dirname $0`
 pushd $DIR > /dev/null
 . ../various/helpers.sh
-popd > /dev/null
 
 # Check User
 check_user_ability
@@ -34,3 +33,6 @@ EOF
   sudo cp asound.conf /etc
 fi
 echo
+
+popd > /dev/null
+

@@ -22,7 +22,7 @@ echo "Press return to continue ..."
 read xxx
 
 # ALSA
-pushd ./alsa > /dev/null
+pushd ./hifiberry > /dev/null
 ./install.sh
 popd > /dev/null
 
