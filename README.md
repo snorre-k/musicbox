@@ -87,4 +87,5 @@ Single components can be installed by changing to the relevant subdirectory and 
 
 ## Warning
 
-The scripts do have only minimal error handling. If something goes wrong, most of the time the scripts do not try to solve this or stop.
+- When Plexamp (2.0) is used on a Raspberry with weak CPU, the playback stutters. Preferably don't use this on a PI with only one core. Hope this is resolved when Plexamp 2.0 leaves beta stage.
+- The scripts do have only minimal error handling. If something goes wrong, most of the time the scripts do not try to solve this or stop.
