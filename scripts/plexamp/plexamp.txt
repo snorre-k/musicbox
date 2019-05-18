@@ -59,3 +59,11 @@ $ sudo systemctl enable plexamp
 $ sudo systemctl start plexamp
 $ sudo systemctl status plexamp
 
+
+Some CMDs to run Plexamp 1.0.5 with Mopidy:
+sudo iptables -t nat -I OUTPUT -p tcp -o lo --dport 36600 -j REDIRECT --to-ports 6600
+sed  -i 's/.addidwithloudness.,\[e,t.gain,t.albumGain,t.peak,t.albumPeak,t.startRamp,t.endRamp\]/\"addid\",\[e\]/' server.prod.js
+sed -i 's/return this.client.sendCommandAsync(m("replay_gain_mode",\[e\]))/return/' server.prod.js
+sed -i 's/return this.client.sendCommandAsync(m("crossfade",\[e\]))/return/' server.prod.js
+sed -i 's/return this.client.sendCommandAsync(m("mixrampdb",\[e\])).then(()=>this.client.sendCommandAsync(m("mixrampdelay",\[t\])))/return/' server.prod.js
+
