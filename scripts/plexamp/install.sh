@@ -87,7 +87,7 @@ if [ "$answer" = "y" ]; then
       echo    "         - Get the \"server.json\" file:"
       echo -e "           + Windows cmd: ${bold}type %LOCALAPPDATA%\\Plexamp\\Plexamp\\server.json${reset}"
       echo -e "           + Linux bash: ${bold}cat ~/.config/Plexamp/server.json${reset}"
-      echo    "           + macOS: Sorry, I do not own a MAC - please find it yourself"
+      echo    "           + macOS bash: ${bold}cat '~/Library/Application Support/Plexamp/server.json'${reset}"
       echo -e "         - Copy the content of ${bold}server.json${reset} to your PI to:"
       echo -e "           + ${bold}/home/pi/.config/Plexamp/server.json${reset}"
       echo    "         - Sign out and back into your existing desktop install to get a new identifier/token"
