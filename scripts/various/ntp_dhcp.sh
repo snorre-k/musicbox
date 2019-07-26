@@ -35,6 +35,6 @@ if \$if_up; then
 fi
 EOF
 
-sed -i 's/#option ntp_servers/option ntp_servers/' /etc/dhcpcd.conf
+sudo sed -i 's/#option ntp_servers/option ntp_servers/' /etc/dhcpcd.conf
 echo -e "$INFO Settings done for using the DHCP supplied NTP servers"
 
