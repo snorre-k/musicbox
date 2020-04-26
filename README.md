@@ -2,6 +2,8 @@
 
 Some scripts to create a RPI musicbox with a [HifiBerry DAC](https://www.hifiberry.com/) on Raspberry PI (especially [PI Zero](https://www.raspberrypi.org/products/raspberry-pi-zero/)) with Raspbian
 
+- 26.04.2020 - now musicbox is compatible with Raspian Buster and RPI 4b
+
 ## Included software
 
 - Spotify Connect Server: [spotifyd](https://github.com/Spotifyd/spotifyd)
