@@ -43,7 +43,7 @@ THX to
   - `ssh pi@10.10.10.10`
   - Password: Password set before or `raspberry`
 - Latest Patches / Install GIT / Reboot
-  - `sudo apt update && sudo apt upgrade -y; sudo apt install -y git; reboot`
+  - `sudo apt update && sudo apt upgrade -y; sudo apt install -y git; sudo reboot`
 - SSH to PI again
 - Clone this repository
   - `mkdir ~/sw; cd ~/sw; git clone https://github.com/snorre-k/musicbox.git; cd`
