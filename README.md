@@ -1,6 +1,6 @@
 # musicbox
 
-Some scripts to create a RPI musicbox with a [HifiBerry DAC](https://www.hifiberry.com/) on [PI Zero](https://www.raspberrypi.org/products/raspberry-pi-zero/) with Raspbian Stretch
+Some scripts to create a RPI musicbox with a [HifiBerry DAC](https://www.hifiberry.com/) on Raspberry PI (especially [PI Zero](https://www.raspberrypi.org/products/raspberry-pi-zero/)) with Raspbian
 
 ## Included software
 
@@ -19,7 +19,7 @@ THX to
 
 ## Setup
 
-- Install [Raspbian Stretch Lite](https://www.raspberrypi.org/downloads/raspbian/) on a SD card
+- Install [Raspbian Lite](https://www.raspberrypi.org/downloads/raspbian/) on a SD card
 - Insert SD card into your PI (Zero), connect HDMI and a keyboard
 - Power up PI (Zero)
 - Login with `pi` / `raspberry`

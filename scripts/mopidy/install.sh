@@ -19,42 +19,40 @@ answer=`echo "$answer" | tr '[:upper:]' '[:lower:]'`
 if [ "$answer" = "y" ]; then
   echo -e "$INFO Adding Mopidy and Upmpdcli Repository"
   # mopidy
+  distribution=`grep '^deb' /etc/apt/sources.list | awk '{print $3}' | sort | uniq | head -1`
   wget -q -O - https://apt.mopidy.com/mopidy.gpg | sudo apt-key add -
-  sudo wget -q -O /etc/apt/sources.list.d/mopidy.list https://apt.mopidy.com/stretch.list
+  sudo wget -q -O /etc/apt/sources.list.d/mopidy.list https://apt.mopidy.com/$distribution.list
   # upmpdcli
   NO_upmpdcli=0
-  apt_install dirmngr
-  gpg --keyserver pool.sks-keyservers.net --keyserver-options timeout=10 --recv-key F8E3347256922A8AE767605B7808CE96D38B9201
+  if ! dpkg -l|grep -q "^ii  dirmngr"; then  apt_install dirmngr; fi
+  gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --keyserver-options timeout=10 --recv-key F8E3347256922A8AE767605B7808CE96D38B9201
   if [ $? -ne 0 ]; then
-    gpg --recv-key F8E3347256922A8AE767605B7808CE96D38B9201
-    if [ $? -ne 0 ]; then
-      echo -e "$ERROR Signing key for repository containing upmpdcli could not be fetched"
-      echo -e "       Not installing ${bold}upmpdcli${reset}"
-      NO_upmpdcli=1
-    fi
+    echo -e "$ERROR Signing key for repository containing upmpdcli could not be fetched"
+    echo -e "       Not installing ${bold}upmpdcli${reset}"
+    NO_upmpdcli=1
   fi
   if [ $NO_upmpdcli -eq 0 ]; then
     gpg --export F8E3347256922A8AE767605B7808CE96D38B9201 | sudo apt-key add -
     cat << EOF | sudo tee /etc/apt/sources.list.d/upmpdcli.list > /dev/null
-deb http://www.lesbonscomptes.com/upmpdcli/downloads/raspbian/ stretch main
-deb-src http://www.lesbonscomptes.com/upmpdcli/downloads/raspbian/ stretch main
+deb http://www.lesbonscomptes.com/upmpdcli/downloads/raspbian/ $distribution main
+deb-src http://www.lesbonscomptes.com/upmpdcli/downloads/raspbian/ $distribution main
 EOF
   fi
 
   if [ $NO_upmpdcli -eq 0 ]; then
     echo -e "$INFO Installing Mopidy, Upmpdcli and Plugins"
     sudo apt update
-    apt_install mopidy mopidy-tunein mopidy-spotify python-pip gstreamer1.0-plugins-bad gstreamer1.0-libav upmpdcli
+    apt_install mopidy mopidy-tunein mopidy-spotify python3-pip gstreamer1.0-plugins-bad gstreamer1.0-libav upmpdcli
     sudo sed -i "s/^friendlyname =.*/friendlyname = `hostname`/" /etc/upmpdcli.conf
     sudo systemctl restart upmpdcli.service
   else
     echo -e "$INFO Installing Mopidyi and Plugins"
     sudo apt update
-    apt_install mopidy mopidy-tunein mopidy-spotify python-pip gstreamer1.0-plugins-bad gstreamer1.0-libav
+    apt_install mopidy mopidy-tunein mopidy-spotify python3-pip gstreamer1.0-plugins-bad gstreamer1.0-libav
   fi
 
   echo -e "$INFO Installing Web GUI with pip"
-  sudo pip install Mopidy-Iris
+  sudo python3 -m pip install Mopidy-Iris
 
   echo -e "$INFO Settings in /etc/mopidy/mopidy.conf"
   cat << EOF | sudo tee -a /etc/mopidy/mopidy.conf > /dev/null
