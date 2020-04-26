@@ -42,14 +42,14 @@ THX to
 - SSH to your PI (from Windows - Putty, or from Linux - ssh). Example below shows a Linux SSH connection. Insert your IP instead of `10.10.10.10`
   - `ssh pi@10.10.10.10`
   - Password: Password set before or `raspberry`
-- Install GIT
-  - `sudo apt update && sudo apt upgrade -y; sudo apt install -y git`
+- Latest Patches / Install GIT / Reboot
+  - `sudo apt update && sudo apt upgrade -y; sudo apt install -y git; reboot`
+- SSH to PI again
 - Clone this repository
-  - `mkdir ~/sw; cd ~/sw; git clone https://github.com/snorre-k/musicbox.git`
+  - `mkdir ~/sw; cd ~/sw; git clone https://github.com/snorre-k/musicbox.git; cd`
 - Start the installation
   - `~/sw/musicbox/scripts/start_install.sh`
-- Reboot to get DAC overlay started
-  - `sudo reboot`
+  - PI gets rebootet, after installation has finished
   - You should hear a starting sound after the boot has finished
 
 ## What can I do after installation?
