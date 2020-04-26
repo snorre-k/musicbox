@@ -5,7 +5,7 @@ Some scripts to create a RPI musicbox with a [HifiBerry DAC](https://www.hifiber
 ## Included software
 
 - Spotify Connect Server: [spotifyd](https://github.com/Spotifyd/spotifyd)
-- Plex Audio Player: [plexamp](https://plexamp.com/)
+- Plex Audio Player: [Plexamp for RPI v2.0 beta 2](https://forums.plex.tv/t/plexamp-for-raspberry-pi-release-notes/368282) - [Plexamp](https://plexamp.com/)
 - Music Player Daemon (MPD) with TuneIn and Spotify Integration: [mopidy](https://www.mopidy.com/)
 - Bluetooth Audio: [bluealsa](https://github.com/Arkq/bluez-alsa)
 - Zeroconf: [avahi-daemon](https://www.avahi.org/)
