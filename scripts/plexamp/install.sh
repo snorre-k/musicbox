@@ -9,50 +9,58 @@ pushd $DIR > /dev/null
 
 # Check User
 check_user_ability
+hardware=`uname -m`
 
 echo -e "$INFO Installation of Plexamp running as Audio service"
 echo -e "$WARNING Plexamp needs NODEJS version 9.x"
 echo    "         This is not available for armv61 (RPI 1 and PI Zero) as package"
 echo    "         Therefore we install it as binary download"
-echo    "         If you have armv71 (RPI 2/3/4), skip this step and do the following:"
+echo    "         If you have armv71 (RPI 2/3/4), then this this step is skipped. You can do the following:"
 echo -e "         - ${bold}curl -sL https://deb.nodesource.com/setup_9.x | sudo -E bash -${reset}"
-echo -e "         - ${bold}sudo apt install -y nodejs${reset}"
+echo -e "         - ${bold}sudo apt list nodejs -a${reset} - to get the version information - use 9.x package!"
+echo -e "         - ${bold}sudo apt install -y nodejs=9.11.2-1nodesource1${reset}"
 echo
-echo -e "$INFO Your hardware is: `uname -m`"
-echo -n "Do you want to install binary NODEJS 9.x for armv61 [y/N]: "
-read answer
-answer=`echo "$answer" | tr '[:upper:]' '[:lower:]'`
+echo -e "$INFO Your hardware is: $hardware"
 
-if [ "$answer" = "y" ]; then
-  VERSION=v9.11.2
-  DISTRO=linux-armv6l
+if [ "$hardware" = "armv6l" ]; then
+  echo -n "Do you want to install binary NODEJS 9.x for armv61 [y/N]: "
+  read answer
+  answer=`echo "$answer" | tr '[:upper:]' '[:lower:]'`
 
-  echo -e "$INFO Downloading NODEJS $VERSION for $DISTRO"
-  mkdir -p ~/sw
-  pushd ~/sw > /dev/null
-  wget -q https://nodejs.org/dist/$VERSION/node-$VERSION-$DISTRO.tar.gz
+  if [ "$answer" = "y" ]; then
+    VERSION=v9.11.2
+    DISTRO=linux-armv6l
 
-  if [ $? -eq 0 ]; then
-    if [ -f node-$VERSION-$DISTRO.tar.gz ]; then
-      echo -e "$INFO Extracting and linking NODEJS $VERSION for $DISTRO"
-      sudo mkdir -p /usr/local/lib/nodejs
-      sudo tar -xf node-$VERSION-$DISTRO.tar.gz -C /usr/local/lib/nodejs
-      cat << EOF | sudo tee /etc/profile.d/nodejs.sh > /dev/null
+    echo -e "$INFO Downloading NODEJS $VERSION for $DISTRO"
+    mkdir -p ~/sw
+    pushd ~/sw > /dev/null
+    wget -q https://nodejs.org/dist/$VERSION/node-$VERSION-$DISTRO.tar.gz
+
+    if [ $? -eq 0 ]; then
+      if [ -f node-$VERSION-$DISTRO.tar.gz ]; then
+        echo -e "$INFO Extracting and linking NODEJS $VERSION for $DISTRO"
+        sudo mkdir -p /usr/local/lib/nodejs
+        sudo tar -xf node-$VERSION-$DISTRO.tar.gz -C /usr/local/lib/nodejs
+        cat << EOF | sudo tee /etc/profile.d/nodejs.sh > /dev/null
 # Nodejs
 VERSION=$VERSION
 DISTRO=$DISTRO
 export PATH=/usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin:$PATH
 EOF
-      sudo ln -s /usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin/node /usr/bin/node
-      sudo ln -s /usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin/npm /usr/bin/npm
-      sudo ln -s /usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin/npx /usr/bin/npx
+        sudo ln -s /usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin/node /usr/bin/node
+        sudo ln -s /usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin/npm /usr/bin/npm
+        sudo ln -s /usr/local/lib/nodejs/node-$VERSION-$DISTRO/bin/npx /usr/bin/npx
+      else
+        echo -e "$ERROR File $VERSION/node-$VERSION-$DISTRO.tar.gz not found"
+      fi
     else
-      echo -e "$ERROR File $VERSION/node-$VERSION-$DISTRO.tar.gz not found"
+      echo -e "$ERROR Unable to download https://nodejs.org/dist/$VERSION/node-$VERSION-$DISTRO.tar.gz"
     fi
-  else
-    echo -e "$ERROR Unable to download https://nodejs.org/dist/$VERSION/node-$VERSION-$DISTRO.tar.gz"
+    popd > /dev/null
   fi
-  popd > /dev/null
+elif [ "$hardware" = "armv7l" ]; then
+  echo -n "Please install nodejs as shown above. Press ENTER to continue ... "
+  read answer
 fi
 
 echo
